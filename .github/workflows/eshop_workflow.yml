@@ -127,6 +127,7 @@ jobs:
           echo '${{ secrets.SSH_KEY }}' > AWS-novj53.pem
           chmod 400 AWS-novj53.pem
           echo '${{ secrets.VAULT_PASSWORD }}' > vault_password
+          mkdir -p group_vars/all/
           echo 'access_key: ${{ secrets.AWS_ACCESS_KEY }}' > group_vars/all/aws.yml
           echo 'secret_key: ${{ secrets.AWS_SECRET_KEY }}' >> group_vars/all/aws.yml
           echo 'session_token: ${{ secrets.AWS_SESSION_TOKEN }}' >> group_vars/all/aws.yml
