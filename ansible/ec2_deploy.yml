@@ -13,6 +13,7 @@
         count: 1
         network:
           assign_public_ip: yes
+        state: "started"
         wait: yes
         security_group: eshop
         aws_access_key: "{{ access_key }}"
@@ -23,7 +24,6 @@
     - name: Write out item
       ansible.builtin.debug:
         msg: "{{ item }}"
-      loop: "{{ ec2_instance_result.instances }}"
 
     - name: Add instance host to group
       ansible.builtin.add_host:
