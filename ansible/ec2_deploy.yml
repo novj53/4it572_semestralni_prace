@@ -20,10 +20,6 @@
         security_token: "{{ session_token }}"
       register: ec2_instance_result
 
-    - name: Write out item
-      ansible.builtin.debug:
-        msg: "{{ ec2_instance_result.instances }}"
-
     - name: Add instance host to group
       ansible.builtin.add_host:
         hostname: "{{ item.public_ip_address }}"
