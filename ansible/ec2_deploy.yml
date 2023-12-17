@@ -13,6 +13,7 @@
         count: 1
         network:
           assign_public_ip: yes
+        state: 'running'
         wait: yes
         security_group: eshop
         aws_access_key: "{{ access_key }}"
