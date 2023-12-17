@@ -134,4 +134,4 @@ jobs:
           echo 'secret_key: ${{ secrets.AWS_SECRET_KEY }}' >> group_vars/all/aws.yml
           echo 'session_token: ${{ secrets.AWS_SESSION_TOKEN }}' >> group_vars/all/aws.yml
           ansible-vault encrypt group_vars/all/aws.yml --vault-password-file vault_password
-          ansible-playbook ec2_deploy.yml --vault-pass-file vault_password --user ec2-user --key-file AWS-novj53.pem
+          ansible-galaxy collection list
