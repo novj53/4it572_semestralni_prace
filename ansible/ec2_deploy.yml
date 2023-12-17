@@ -11,7 +11,7 @@
         key_name: AWS-novj53
         network:
           assign_public_ip: true
-        state: "running"
+        state: "started"
         wait: true
         count: 1
         security_group: eshop
@@ -27,7 +27,6 @@
         aws_secret_key: "{{ secret_key }}"
         security_token: "{{ session_token }}"
         instance_ids: "{{ ec2_instance_result.instance_ids }}"
-      when: ec2_instance_result.public_ip_address is defined
       register: ec2_instances
 
     - name: Write out item
