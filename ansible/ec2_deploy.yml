@@ -23,7 +23,7 @@
 
     - name: Write out item
       ansible.builtin.debug:
-        msg: "{{ item }}"
+        msg: "{{ ec2_instance_result.instances[0] }}"
 
     - name: Add instance host to group
       ansible.builtin.add_host:
