@@ -20,11 +20,13 @@
         security_token: "{{ session_token }}"
       register: ec2_instance_result
 
+    - set_fact:
+        instance_ip_address: "{{ ec2_instance_result.instances[0].public_ip_address }}"
+
     - name: Add instance host to group
-      add_host:
-        hostname: "{{ item.public_ip_address }}"
+      ansible.builtin.add_host:
+        hostname: instance_ip_address
         groupname: launched
-      loop: "{{ ec2_instance_result.instances }}"
 
     - name: Wait for ssh connection
       delegate_to: "{{ item.public_dns_name }}"
