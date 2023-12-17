@@ -114,8 +114,21 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
+        with:
+          python-version: '3.12'
 
       - name: Install ansible
         run: |
           pip3 install ansible boto boto3
 
+      - name: Set up and run Ansible
+        working-directory: ./ansible
+        run: |
+          echo '${{ secrets.SSH_KEY }}' > AWS-novj53.pem
+          chmod 400 AWS-novj53.pem
+          echo '${{ secrets.VAULT_PASSWORD }}' > vault_password
+          echo 'access_key: ${{ secrets.AWS_ACCESS_KEY }}' > group_vars/all/aws.yml
+          echo 'secret_key: ${{ secrets.AWS_SECRET_KEY }}' >> group_vars/all/aws.yml
+          echo 'session_token: ${{ secrets.AWS_SESSION_TOKEN }}' >> group_vars/all/aws.yml
+          ansible-vault encrypt group_vars/all/aws.yml --vault-password-file vault_password
+          ansible-playbook ec2_deploy.yml --vault-pass-file vault_password --user ec2-user --key-file AWS-novj53.pem
