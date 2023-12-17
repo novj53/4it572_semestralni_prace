@@ -122,6 +122,8 @@ jobs:
           pip3 install ansible boto boto3
 
       - name: Set up and run Ansible
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: False
         working-directory: ./ansible
         run: |
           echo '${{ secrets.SSH_KEY }}' > AWS-novj53.pem
