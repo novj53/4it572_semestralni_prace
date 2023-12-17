@@ -27,7 +27,7 @@
 
     - name: Add instance host to group
       ansible.builtin.add_host:
-        hostname: "{{ item }}"
+        hostname: "{{ item.public_ip_address }}"
         groupname: launched
       loop: "{{ ec2_instance_result.instances }}"
 
