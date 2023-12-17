@@ -12,9 +12,9 @@
         vpc_subnet_id: subnet-035623303418bdecc
         count: 1
         network:
-          assign_public_ip: yes
-        state: 'running'
-        wait: yes
+          assign_public_ip: true
+        state: started
+        wait: true
         security_group: eshop
         aws_access_key: "{{ access_key }}"
         aws_secret_key: "{{ secret_key }}"
