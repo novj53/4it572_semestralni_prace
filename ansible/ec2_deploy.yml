@@ -72,3 +72,19 @@
     - wait_for:
         port:
           80
+
+- name: Remove old instance
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Terminate old instance
+      amazon.aws.ec2_instance:
+        instance_ids: "{{ ec2_instance_result.instances[0] }}"
+        region: us-east-1
+        state: "terminated"
+        wait: true
+        aws_access_key: "{{ access_key }}"
+        aws_secret_key: "{{ secret_key }}"
+        security_token: "{{ session_token }}"
+      when: ec2_instance_result.instances | length > 1
