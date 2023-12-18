@@ -80,7 +80,7 @@
   tasks:
     - name: Terminate old instance
       amazon.aws.ec2_instance:
-        instance_ids: "{{ ec2_instance_result.instances[0] }}"
+        instance_ids: "{{ ec2_instance_result.instances[0].instance_id }}"
         region: us-east-1
         state: "terminated"
         wait: true
