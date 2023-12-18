@@ -28,7 +28,7 @@ function App() {
         </S.Side>
         <S.Main>
           <S.MainHeader>
-            <p>{products?.length} Product(s) found</p>
+            <p>{products?.length} Product(s) found2</p>
           </S.MainHeader>
           <Products products={products} />
         </S.Main>
